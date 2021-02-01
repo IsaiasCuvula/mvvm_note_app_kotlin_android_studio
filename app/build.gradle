@@ -69,5 +69,4 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.2"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.2"
 
-
 }

@@ -32,7 +32,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="200"
-                    android:background="@android:color/transparent"
                     android:text="Note title"
                     android:textColor="@color/black"
                     android:textSize="20sp"

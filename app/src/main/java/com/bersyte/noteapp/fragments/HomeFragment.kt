@@ -2,6 +2,7 @@ package com.bersyte.noteapp.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -10,7 +11,6 @@ import com.bersyte.noteapp.R
 import com.bersyte.noteapp.adapter.NoteAdapter
 import com.bersyte.noteapp.databinding.FragmentHomeBinding
 import com.bersyte.noteapp.model.Note
-import androidx.appcompat.widget.SearchView
 import com.bersyte.noteapp.viewmodel.NoteViewModel
 
 
@@ -47,7 +47,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),
 
     private fun setUpRecyclerView() {
         noteAdapter = NoteAdapter()
-        noteAdapter = NoteAdapter()
+
         binding.recyclerView.apply {
             layoutManager = StaggeredGridLayoutManager(
                 2,
@@ -81,29 +81,32 @@ class HomeFragment : Fragment(R.layout.fragment_home),
         menu.clear()
         inflater.inflate(R.menu.home_menu, menu)
         val mMenuSearch = menu.findItem(R.id.menu_search).actionView as SearchView
-        mMenuSearch.isSubmitButtonEnabled = true
+        mMenuSearch.isSubmitButtonEnabled = false
         mMenuSearch.setOnQueryTextListener(this)
+
     }
 
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if (query != null){
+        /*if (query != null) {
             searchNote(query)
-        }
-        return true
+        }*/
+        return false
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if (newText != null){
+
+        if (newText != null) {
             searchNote(newText)
         }
         return true
     }
 
-    private fun searchNote(query: String?){
+
+    private fun searchNote(query: String?) {
         val searchQuery = "%$query%"
         notesViewModel.searchNote(searchQuery).observe(
-            this, {list ->
+            this, { list ->
                 noteAdapter.differ.submitList(list)
             }
         )

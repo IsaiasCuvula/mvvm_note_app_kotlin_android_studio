@@ -3,7 +3,6 @@ package com.bersyte.noteapp.db
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.bersyte.noteapp.model.Note
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao {
