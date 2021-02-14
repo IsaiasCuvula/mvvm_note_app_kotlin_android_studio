@@ -1,4 +1,4 @@
-package com.bersyte.noteapp.fragments
+  package com.bersyte.noteapp.fragments
 
 import android.os.Bundle
 import android.view.*
