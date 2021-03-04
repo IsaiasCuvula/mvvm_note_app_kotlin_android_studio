@@ -15,10 +15,9 @@ import java.util.*
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
-    private var binding: NoteLayoutAdapterBinding? = null
 
-    class NoteViewHolder(itemBinding: NoteLayoutAdapterBinding) :
-        RecyclerView.ViewHolder(itemBinding.root)
+    class NoteViewHolder(val binding: NoteLayoutAdapterBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
 
     private val differCallback =
@@ -38,38 +37,27 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        binding = NoteLayoutAdapterBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+        return NoteViewHolder(
+            NoteLayoutAdapterBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
-
-        return NoteViewHolder(binding!!)
     }
-
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = differ.currentList[position]
 
-        holder.itemView.apply {
+        holder.binding.tvNoteTitle.text = currentNote.noteTitle
+        holder.binding.tvNoteBody.text = currentNote.noteBody
+        val random = Random()
+        val color =
+            Color.argb(255, random.nextInt(256),
+                random.nextInt(256), random.nextInt(256)
+            )
 
-            binding?.tvNoteTitle?.text = currentNote.noteTitle
-            binding?.tvNoteBody?.text = currentNote.noteBody
-
-            val random = Random()
-
-            val color =
-                Color.argb(
-                    255,
-                    random.nextInt(256),
-                    random.nextInt(256),
-                    random.nextInt(256)
-                )
-
-            binding?.ibColor?.setBackgroundColor(color)
-
-
-        }.setOnClickListener { view ->
-
+        holder.binding.ibColor.setBackgroundColor(color)
+        holder.itemView.setOnClickListener { view ->
             val direction = HomeFragmentDirections
                 .actionHomeFragmentToUpdateNoteFragment(currentNote)
             view.findNavController().navigate(direction)
