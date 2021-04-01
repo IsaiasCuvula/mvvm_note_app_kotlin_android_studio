@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,18 +9,28 @@
     tools:context=".fragments.NewNoteFragment">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/cardView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/white"
         app:cardCornerRadius="5dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
+
             <EditText
                 android:id="@+id/etNoteTitle"
                 android:layout_width="match_parent"
@@ -33,20 +43,21 @@
                 android:textColorHint="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/etNoteBody"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:gravity="start|top"
-                android:ems="10"
                 android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:gravity="start|top"
                 android:hint="Type something..."
                 android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

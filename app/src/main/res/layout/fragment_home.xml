@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
+    android:id="@+id/home_frag"
     android:background="@color/background_white"
     tools:context=".fragments.HomeFragment">
 

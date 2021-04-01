@@ -1,5 +1,7 @@
   package com.bersyte.noteapp.fragments
 
+
+
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView

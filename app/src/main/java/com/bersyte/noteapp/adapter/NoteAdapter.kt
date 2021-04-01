@@ -15,9 +15,8 @@ import java.util.*
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
-
-    class NoteViewHolder(val binding: NoteLayoutAdapterBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    class NoteViewHolder(val itemBinding: NoteLayoutAdapterBinding) :
+        RecyclerView.ViewHolder(itemBinding.root)
 
 
     private val differCallback =
@@ -39,25 +38,27 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
             NoteLayoutAdapterBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
+
     }
+
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = differ.currentList[position]
 
-        holder.binding.tvNoteTitle.text = currentNote.noteTitle
-        holder.binding.tvNoteBody.text = currentNote.noteBody
+        holder.itemBinding.tvNoteTitle.text = currentNote.noteTitle
+        holder.itemBinding.tvNoteBody.text = currentNote.noteBody
         val random = Random()
         val color =
-            Color.argb(255, random.nextInt(256),
+            Color.argb(
+                255, random.nextInt(256),
                 random.nextInt(256), random.nextInt(256)
             )
+        holder.itemBinding.ibColor.setBackgroundColor(color)
 
-        holder.binding.ibColor.setBackgroundColor(color)
         holder.itemView.setOnClickListener { view ->
+
             val direction = HomeFragmentDirections
                 .actionHomeFragmentToUpdateNoteFragment(currentNote)
             view.findNavController().navigate(direction)
